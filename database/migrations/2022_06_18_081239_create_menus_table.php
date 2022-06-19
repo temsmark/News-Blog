@@ -1,6 +1,5 @@
 <?php
 
-use App\Enum\StatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('status')->default(StatusEnum::INACTIVE);
+            $table->string('status')->default(config('settings.status.inactive'));
             $table->string('icon')->nullable();
             $table->timestamps();
             $table->softDeletes();
