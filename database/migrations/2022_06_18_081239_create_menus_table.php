@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('status')->default(config('settings.status.inactive'));
+            $table->string('icon')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
