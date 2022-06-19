@@ -19,8 +19,7 @@ class ArticleController extends Controller
     {
 
 
-        $article=Article::whereStatus(config('settings.status.active'))
-            ->with(['author','menu'])
+        $article=Article::with(['author','menu'])
             ->select(['id','user_id','menu_id', 'title', 'slug','content','featured_image','created_at'])
             ->latest()
             ->paginate();

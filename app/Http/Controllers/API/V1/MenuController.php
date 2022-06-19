@@ -10,7 +10,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menu = Menu::whereStatus(config('settings.status.active'))
+        $menu = Menu::latest()
             ->get(['id', 'name', 'slug','icon']);
 
         return response()->json([
