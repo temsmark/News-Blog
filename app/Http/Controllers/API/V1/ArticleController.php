@@ -42,7 +42,7 @@ class ArticleController extends Controller
             'article' => 'required|integer',
         ]);
 
-        $article=Article::with(['user','menu'])
+        $article=Article::with(['author','menu'])
             ->findOrFail($request->article);
 
         return response()->json([
