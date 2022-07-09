@@ -23,9 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 $routeGroup = function () {
     Route::namespace('API\V1')->group(function () {
         Route::get('menus',[MenuController::class, 'index']);
-        Route::get('articles',[ArticleController::class, 'index']);
-        Route::get('article/detail',[ArticleController::class, 'details']);
+        Route::group(['prefix' => 'article'], function () {
+            Route::get('all',[ArticleController::class, 'index']);
+            Route::get('detail',[ArticleController::class, 'details']);
+        });
     });
 };
 
 Route::group(['prefix' => 'v1'], $routeGroup);
+
+
