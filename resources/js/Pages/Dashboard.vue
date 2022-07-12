@@ -1,18 +1,15 @@
-<script setup>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
-</script>
 
 <template>
-    <Head title="Dashboard" />
 
-    <BreezeAuthenticatedLayout>
-        <template #header>
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+               Dashboard
             </h2>
-        </template>
+        </div>
+    </header>
 
+    <main>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -22,5 +19,14 @@ import { Head } from '@inertiajs/inertia-vue3';
                 </div>
             </div>
         </div>
-    </BreezeAuthenticatedLayout>
+    </main>
+
+
 </template>
+<script>
+import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+export default{
+   layout: BreezeAuthenticatedLayout,
+
+}
+</script>

@@ -33,6 +33,10 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink  :href="route('menu.index')" :active="route().current('menu.index')">
                                     Menus
                                 </BreezeNavLink>
+                                <BreezeNavLink  :href="route('article.index')" :active="route().current('article.index')">
+                                    Articles
+                                </BreezeNavLink>
+                                <input type="text">
                             </div>
                         </div>
 
@@ -99,7 +103,7 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Page Heading -->
             <header class="bg-white shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
                     <slot name="header" />
                 </div>
             </header>

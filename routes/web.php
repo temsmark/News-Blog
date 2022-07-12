@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,10 +30,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
-    Route::group(['prefix'=>'menus','as'=>'menu.'],function(){
-        Route::resource('/',MenuController::class);
-    });
+        Route::resource('menu', MenuController::class);
+        Route::resource('article', ArticleController::class);
 });

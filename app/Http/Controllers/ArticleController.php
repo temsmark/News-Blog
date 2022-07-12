@@ -4,17 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        return Inertia::render('Articles/Index',[
+            'articles'=>clock(Article::with(['author','menu'])
+                ->when(request('phrase'),function($query){
+                    return $query->where('title','like','%'.request('phrase').'%');
+                })
+                ->orderBy('id','desc')
+                ->paginate(10)
+                ->through(function($article){
+                    return [
+                        'id'=>$article->id,
+                        'title'=>$article->title,
+                        'slug'=>$article->slug,
+                        'status'=>$article->status,
+                        'created_at'=>$article->created_at->DiffForHumans(),
+                        'updated_at'=>$article->updated_at,
+                    ];
+                })),
+            ]
+
+        );
+
+
+
     }
 
     /**
@@ -80,6 +104,6 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+
     }
 }

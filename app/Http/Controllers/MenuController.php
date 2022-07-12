@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -18,43 +19,54 @@ class MenuController extends Controller
     {
         return Inertia::render('Menus/Index', [
             'menus' => Menu::withCount('articles')
-                ->when(request('phrase'), function ($query) {
-                return $query->where('name', 'like', '%' . request('phrase') . '%');
-            })->get()
-            ->map(function ($menu) {
-                return [
-                    'id' => $menu->id,
-                    'name' => $menu->name,
-                    'slug' => $menu->slug,
-                    'status' => $menu->status,
-                    'icon' => $menu->icon,
-                    'articles'=> $menu->articles_count,
-                    'created_at' => $menu->created_at->DiffForHumans(),
-                    'updated_at' => $menu->updated_at,
-                ];
-            }),
+                ->when(request('phrase'), function ($query, $phrase) {
+                    return $query->where('name', 'like', "%{$phrase}%");
+                })
+                ->orderBy('id', 'desc')
+                ->get()
+                ->map(function ($menu) {
+                    return [
+                        'id' => $menu->id,
+                        'name' => $menu->name,
+                        'slug' => $menu->slug,
+                        'status' => $menu->status,
+                        'icon' => $menu->icon,
+                        'articles'=> $menu->articles_count,
+                        'created_at' => $menu->created_at->DiffForHumans(),
+                        'updated_at' => $menu->updated_at,
+                    ];
+                }),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create()
+    public function create(): Response
     {
-
+        return Inertia::render('Menus/Create', [
+            'statuses'=>config('settings.status'),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $items=$request->validate([
+            'name' => 'required|string',
+            'icon' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        Menu::create($items);
+        return redirect()->route('menu.index');
     }
 
     /**
@@ -82,7 +94,7 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
