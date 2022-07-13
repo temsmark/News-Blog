@@ -59,7 +59,6 @@ defineProps({
     statuses: Object,
     errors: Object,
 })
-
 let form=useForm({
     name: '',
     icon: '',
