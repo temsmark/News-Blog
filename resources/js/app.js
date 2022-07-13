@@ -5,8 +5,8 @@ import { createApp, h } from 'vue';
 import { createInertiaApp, Head} from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-// import {Ziggy} from "@/ziggy";
- import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import {Ziggy} from "@/ziggy";
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import BreezeNavLink from '@/Components/NavLink.vue';
 
