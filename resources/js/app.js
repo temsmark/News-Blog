@@ -17,7 +17,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 
-library.add(fas,far,fab);
+ library.add(fas,far,fab);
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 

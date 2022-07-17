@@ -89,10 +89,7 @@
                                 {{ menu.status }}
                             </td>
                             <td class="px-6 py-4">
-<!--                                <font-awesome-icon icon=”hat-wizard” />-->
-                                <i :class="menu.icon"></i>
-                                <fa :icon="['fab', 'twitter']"  />
-
+                                <fa :icon="menu.icon"  class="fa fa-coffee" />
                             </td>
                             <td class="px-6 py-4">
                                 {{ menu.articles }}
@@ -108,7 +105,6 @@
                         </tbody>
                     </table>
                 </div>
-
 
             </div>
         </div>
