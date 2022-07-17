@@ -5,10 +5,11 @@ import { createApp, h } from 'vue';
 import { createInertiaApp, Head} from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+// import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import BreezeNavLink from '@/Components/NavLink.vue';
-import {Ziggy} from "@/ziggy";
+import { ZiggyVue } from 'ziggy-vue';
+import route from 'ziggy';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -18,7 +19,7 @@ createInertiaApp({
     setup({ el, app, props, plugin }) {
         return createApp({ render: () => h(app, props) })
             .use(plugin)
-            // .use(ZiggyVue,Ziggy)
+            .use(ZiggyVue,Ziggy)
             .component('BreezeAuthenticatedLayout', BreezeAuthenticatedLayout)
             .component('Head', Head)
             .component('BreezeNavLink', BreezeNavLink)

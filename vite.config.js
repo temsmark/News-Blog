@@ -4,7 +4,10 @@ import vue from '@vitejs/plugin-vue';
 const path = require('path')
 export default defineConfig({
     resolve: {
-        ziggy: path.resolve('vendor/tightenco/ziggy/dist/vue'),
+        alias: {
+            'ziggy': '/vendor/tightenco/ziggy/src/js',
+            'ziggy-vue': '/vendor/tightenco/ziggy/src/js/vue',
+        },
     },
     plugins: [
         laravel({
