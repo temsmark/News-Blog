@@ -9,7 +9,6 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import BreezeNavLink from '@/Components/NavLink.vue';
 import { ZiggyVue } from "ziggy-vue";
-import {Ziggy} from "@/ziggy";
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
