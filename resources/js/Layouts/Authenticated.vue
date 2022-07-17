@@ -36,7 +36,6 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink  :href="route('article.index')" :active="route().current('article.index')">
                                     Articles
                                 </BreezeNavLink>
-                                <input type="text">
                             </div>
                         </div>
 

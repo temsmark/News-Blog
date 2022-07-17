@@ -89,7 +89,10 @@
                                 {{ menu.status }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ menu.icon }}
+<!--                                <font-awesome-icon icon=”hat-wizard” />-->
+                                <i :class="menu.icon"></i>
+                                <fa :icon="['fab', 'twitter']"  />
+
                             </td>
                             <td class="px-6 py-4">
                                 {{ menu.articles }}
@@ -119,12 +122,12 @@ import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import _ from "lodash";
 import {ref, watch} from "vue";
 
-
 InertiaProgress.init({
     showSpinner: true,
 });
 export default {
     name: "Index",
+
     layout: BreezeAuthenticatedLayout,
     props: {
         menus: Object

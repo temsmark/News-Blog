@@ -56,9 +56,6 @@
                                 Article Content
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Slug
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Status
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -100,13 +97,10 @@
                                 <!--                                {{ article.content }}-->
                             </th>
                             <td class="px-6 py-4">
-                                {{ article.slug }}
-                            </td>
-                            <td class="px-6 py-4">
                                 {{ article.status }}
                             </td>
                             <td class="px-6 py-4">
-                                <!--                                {{ article.icon }}-->
+                                <i :class="article.icon"></i>
                             </td>
                             <td class="px-6 py-4">
                                 <!--                                {{ menu.articles }}-->
