@@ -100,6 +100,14 @@
                             <td class="px-6 py-4 text-right">
                                 <a href="#"
                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="#"
+                                   @click="askDelete(route('menu.destroy', {menu: menu}))"
+                                   class="font-medium ml-3 text-red-600 dark:text-red-500">
+                                    <fa icon="fa fa-trash"/>
+
+
+                                </a>
+
                             </td>
                         </tr>
                         </tbody>
@@ -117,6 +125,7 @@ import {InertiaProgress} from "@inertiajs/progress";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import _ from "lodash";
 import {ref, watch} from "vue";
+import {useFlash} from "@/Composables/useFlash";
 
 InertiaProgress.init({
     showSpinner: true,
@@ -130,6 +139,7 @@ export default {
     },
     setup(){
         let phrase=ref('');
+        let {askDelete}=useFlash();
 
         watch(phrase,_.throttle(()=>{
                 Inertia.get("/menu", { phrase: phrase.value }, {preserveState: true, replace:true});
@@ -139,6 +149,7 @@ export default {
 
         return{
             phrase,
+            askDelete
         }
 
     },

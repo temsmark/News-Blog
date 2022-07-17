@@ -17,23 +17,23 @@ class ArticleController extends Controller
     public function index(): Response
     {
         return Inertia::render('Articles/Index',[
-            'articles'=>clock(Article::with(['author','menu'])
-                ->when(request('phrase'),function($query){
-                    return $query->where('title','like','%'.request('phrase').'%');
-                })
-                ->orderBy('id','desc')
-                ->paginate(10)
-                ->through(function($article){
-                    return [
-                        'id'=>$article->id,
-                        'title'=>$article->title,
-                        'slug'=>$article->slug,
-                        'status'=>$article->status,
-                        'menu'=>$article->menu->name,
-                        'created_at'=>$article->created_at->DiffForHumans(),
-                        'updated_at'=>$article->updated_at,
-                    ];
-                })),
+                'articles'=>clock(Article::with(['author','menu'])
+                    ->when(request('phrase'),function($query){
+                        return $query->where('title','like','%'.request('phrase').'%');
+                    })
+                    ->orderBy('id','desc')
+                    ->paginate(10)
+                    ->through(function($article){
+                        return [
+                            'id'=>$article->id,
+                            'title'=>$article->title,
+                            'slug'=>$article->slug,
+                            'status'=>$article->status,
+                            'menu'=>$article->menu->name,
+                            'created_at'=>$article->created_at->DiffForHumans(),
+                            'updated_at'=>$article->updated_at,
+                        ];
+                    })),
             ]
 
         );
@@ -67,11 +67,25 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Article $article)
     {
-        //
+        return Inertia::render('Articles/Show',[
+            'article'=>[
+                'id'=>$article->id,
+                'title'=>$article->title,
+                'slug'=>$article->slug,
+                'status'=>$article->status,
+                'summary'=>$article->summary,
+                'content'=>$article->content,
+                'featured_image'=>$article->featured_image,
+                'menu'=>$article->menu->name,
+                'author'=>$article->author->name,
+                'created_at'=>$article->created_at->DiffForHumans(),
+                'updated_at'=>$article->updated_at,
+            ],
+        ]);
     }
 
     /**
@@ -101,10 +115,11 @@ class ArticleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Article $article)
     {
-
+        $article->delete();
+        return redirect()->route('article.index');
     }
 }

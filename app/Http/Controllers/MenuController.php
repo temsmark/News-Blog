@@ -72,7 +72,7 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function show(Menu $menu)
@@ -83,7 +83,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function edit(Menu $menu)
@@ -95,7 +95,7 @@ class MenuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param  \App\Models\Menu  $menu
+     * @param Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Menu $menu)
@@ -106,11 +106,12 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Menu  $menu
-     * @return \Illuminate\Http\Response
+     * @param Menu $menu
+     * @return RedirectResponse
      */
-    public function destroy(Menu $menu)
+    public function destroy(Menu $menu): RedirectResponse
     {
-        //
+        $menu->delete();
+        return redirect()->route('menu.index');
     }
 }

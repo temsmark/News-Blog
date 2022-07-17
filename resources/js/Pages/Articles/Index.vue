@@ -31,7 +31,7 @@
                         </div>
 
                         <BreezeNavLink
-                            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-2 py-1.5 text-center mr-1 mb-1">
+                            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-2.5 py-1 text-center mr-1 mb-1">
                             Add Articles
                         </BreezeNavLink>
                     </div>
@@ -40,13 +40,7 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-all-search" type="checkbox"
-                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                </div>
-                            </th>
+
                             <th scope="col" class="px-6 py-3">
                                 Article title
                             </th>
@@ -67,13 +61,6 @@
                         <tbody>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                             v-for="article in articles.data" :key="article.id">
-                            <td class="w-4 p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-table-search-1" type="checkbox"
-                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                </div>
-                            </td>
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-pre">
                                 {{ article.title }}
@@ -89,9 +76,23 @@
                                 {{ article.created_at }}
                             </td>
                             <td class="px-6 py-4 text-right">
+                                <BreezeNavLink :href="route('article.show', article)" class="font-medium ml-3 text-blue-600 dark:text-blue-500 hover:underline" >
+                                    <fa icon="fa fa-eye"/>
+
+                                </BreezeNavLink>
                                 <a href="#"
-                                   @click="flash()"
-                                   class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                   class="font-medium ml-3 text-blue-600 dark:text-blue-500 hover:underline">
+                                    <fa icon="fa fa-pencil"/>
+
+                                </a>
+
+                                <a href="#"
+                                   @click="askDelete(route('article.destroy', {article: article}))"
+                                   class="font-medium ml-3 text-red-600 dark:text-red-500">
+                                    <fa icon="fa fa-trash"/>
+
+
+                                </a>
                             </td>
                         </tr>
 
@@ -121,6 +122,11 @@ export default {
             required: true
         }
     },
+    setup(){
+      let {flash,askDelete} = useFlash();
+
+      return{flash,askDelete}
+    }
 }
 </script>
 
