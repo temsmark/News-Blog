@@ -20,7 +20,7 @@ class ArticleController extends Controller
 
 
         $article=Article::with(['author','menu'])
-            ->select(['id','user_id','menu_id', 'title', 'slug','content','featured_image','created_at'])
+            ->select(['id','user_id','menu_id', 'title','summary', 'slug','content','featured_image','created_at'])
             ->latest()
             ->paginate();
 
