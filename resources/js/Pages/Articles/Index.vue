@@ -51,6 +51,9 @@
                                 Category
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Author
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Created
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -71,6 +74,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ article.menu }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ article.author.name }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ article.created_at }}

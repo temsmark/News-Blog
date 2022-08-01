@@ -29,6 +29,7 @@ class ArticleController extends Controller
                             'title'=>$article->title,
                             'slug'=>$article->slug,
                             'status'=>$article->status,
+                            'author'=>$article->author,
                             'menu'=>$article->menu->name,
                             'created_at'=>$article->created_at->DiffForHumans(),
                             'updated_at'=>$article->updated_at,

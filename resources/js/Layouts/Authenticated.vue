@@ -36,6 +36,7 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink  :href="route('article.index')" :active="route().current('article.*')">
                                     Articles
                                 </BreezeNavLink>
+                                <iframe sandbox="allow-same-origin allow-scripts allow-top-navigation allow-popups allow-forms" scrolling=no width="100%" height="180" frameborder="0" src="https://embed.radiopublic.com/e?if=living-on-earth-8jKqR3:RXhwbG9yZQ&ge=s1!8eddadc293fd6f1e364468fa78fb6e3f4abb838f"></iframe>
                             </div>
                         </div>
 

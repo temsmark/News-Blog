@@ -29,7 +29,7 @@ class ArticleFactory extends Factory
             'menu_id'=>Menu::all()->random()->id,
             'summary' => $this->faker->text,
             'content' => $this->faker->sentences(25, true),
-            'featured_image' => $this->faker->imageUrl,
+            'featured_image' => "https://picsum.photos/id/".rand(100,1000)."/500/500.jpg",
 
         ];
     }
