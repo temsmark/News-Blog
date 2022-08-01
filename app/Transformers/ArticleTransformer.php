@@ -28,7 +28,8 @@ class ArticleTransformer extends TransformerAbstract
             'id' => $article->id,
             'title' => $article->title,
             'slug' => $article->slug,
-            'content' => Str::words($article->content, 20),
+            'summary' => Str::words($article->summary, 15),
+            'content' => $article->content,
             'featured_image' => $article->featured_image,
             'ago' => $article->created_at->DiffForHumans(),
         ];
